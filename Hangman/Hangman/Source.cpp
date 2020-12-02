@@ -1,30 +1,20 @@
+#include "GameCLI.h"
 #include <iostream>
-#include <string>
-
-void draw(void) {
-	// 9 x 10 grid
-	std::string board[8];
-
-	board[0] = "  ======= ";
-	board[1] = "  |     | ";
-	board[2] = "  |     O ";
-	board[3] = "  |    /|\\";
-	board[4] = "  |     | ";
-	board[5] = "  |    / \\";
-	board[6] = "  |       ";
-	board[7] = "=====     ";
-
-	std::cout << board[0] << std::endl;
-	std::cout << board[1] << std::endl;
-	std::cout << board[2] << std::endl;
-	std::cout << board[3] << std::endl;
-	std::cout << board[4] << std::endl;
-	std::cout << board[5] << std::endl;
-	std::cout << board[6] << std::endl;
-	std::cout << board[7] << std::endl;
-}
 
 int main(void) {
-	draw();
+	GameCLI game;
+
+	//show welcome message
+	std::cout << "== Welcome to Hangman! ==" << std::endl << std::endl;
+
+	do {
+		//prompt for word or guesser's input
+		game.prompt();
+
+		//draw the board to the screen
+		game.draw_board();
+	} while (game.is_running());
+
+
 	return 0;
 }
