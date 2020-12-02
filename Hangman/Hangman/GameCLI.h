@@ -15,5 +15,6 @@ public:
 
 private:
 	Gallows _game_board;
+	bool _word_is_set;
 };
 
