@@ -90,20 +90,20 @@ void draw(void) {
 }
 
 int main(void) {
-	//GameCLI game;
+	GameCLI game;
 
-	////show welcome message
-	//std::cout << "== Welcome to Hangman! ==" << std::endl << std::endl;
+	//show welcome message
+	std::cout << "== Welcome to Hangman! ==" << std::endl << std::endl;
 
-	//do {
-	//	//prompt for word or guesser's input
-	//	game.prompt();
+	do {
+		//prompt for word or guesser's input
+		game.prompt();
 
-	//	//draw the board to the screen
-	//	game.draw_board();
-	//} while (game.is_running());
+		//draw the board to the screen
+		game.draw_board();
+	} while (game.is_running());
 
-	draw();
+	//draw();
 
 	return 0;
 }
