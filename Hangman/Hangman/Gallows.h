@@ -16,6 +16,7 @@ public:
 	Gallows& operator = (const Gallows& gallows);
 
 	void user_guess(char c);
+	void user_guess(std::string str);
 	void set_word(std::string word);
 	std::array<std::string, BOARD_SIZE>& get_board(void);
 	bool is_body_complete(void);

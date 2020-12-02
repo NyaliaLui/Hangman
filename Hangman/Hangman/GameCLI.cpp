@@ -26,10 +26,24 @@ void GameCLI::prompt(void) {
 	std::string input;
 
 	if (this->_word_is_set) {
-		std::cout << "What letter do you guess? --> ";
+		std::cout << "What letter do you guess?" << std::endl;
+		std::cout << "Alternatively, you can try to guess the whole word/phrase." << std::endl;
+		std::cout << "-- > ";
 		std::getline(std::cin, input);
-		char c = std::toupper(input[0]);
-		this->_game_board.user_guess(c);
+
+		if (input[1] && input[1] != ' ') {
+			for (size_t i = 0; i < input.length(); ++i) {
+				if (input[i] != ' ') {
+					input[i] = char(std::toupper(input[i]));
+				}
+			}
+
+			this->_game_board.user_guess(input);
+		}
+		else {
+			char c = std::toupper(input[0]);
+			this->_game_board.user_guess(c);
+		}
 	}
 	else {
 		std::string input;
@@ -43,8 +57,8 @@ void GameCLI::prompt(void) {
 void GameCLI::draw_board(void) {
 	std::array<std::string, BOARD_SIZE>& board = this->_game_board.get_board();
 
-	for (size_t i = 0; i < GALLOWS_SIZE; ++i) {
-		std::cout << board[i] << std::endl;
+	for (std::string &str : board) {
+		std::cout << str << std::endl;
 	}
 	std::cout << std::endl;
 }

@@ -146,6 +146,33 @@ void Gallows::user_guess(char c) {
 	this->update_fill_space();
 }
 
+void Gallows::user_guess(std::string str) {
+	size_t index = 0, last_pos = 0;
+	bool found_letter = false;
+
+	if (str == this->_word) {
+		this->_fill_space = this->_word;
+	}
+	else {
+		this->_attempt = 6;
+		this->create_head();
+		this->create_body();
+		this->create_left_arm();
+		this->create_right_arm();
+		this->create_left_leg();
+		this->create_right_leg();
+	}
+
+	//check if the word was completed
+	this->_word_complete = (this->_fill_space.find('_') == std::string::npos);
+
+	//update the whole board
+	this->update_board();
+
+	//update the fill_space
+	this->update_fill_space();
+}
+
 void Gallows::set_word(std::string word) {
 	//word can only be set if it wasn't set previously
 	//(i.e. set word when fill space is not set)
@@ -196,31 +223,31 @@ void Gallows::update_fill_space(void) {
 }
 
 void Gallows::create_head(void) {
-	this->_gallows[2] = "  |     O ";
+	this->_gallows[2] = "  |     O    ";
 }
 
 void Gallows::create_body(void) {
-	this->_gallows[3] = "  |     | ";
-	this->_gallows[4] = "  |     | ";
+	this->_gallows[3] = "  |     |    ";
+	this->_gallows[4] = "  |     |    ";
 }
 
 void Gallows::create_left_arm(void) {
 	//the left arm can only be created when the body already exists
-	this->_gallows[3] = "  |    /| ";
+	this->_gallows[3] = "  |    /|   ";
 }
 
 void Gallows::create_right_arm(void) {
 	//the right can can only be created when the left arm exists
-	this->_gallows[3] = "  |    /|\\";
+	this->_gallows[3] = "  |    /|\\   ";
 }
 
 void Gallows::create_left_leg(void) {
-	this->_gallows[5] = "  |    /  ";
+	this->_gallows[5] = "  |    /     ";
 }
 
 void Gallows::create_right_leg(void) {
 	//the right leg can only be created when the left leg exists
-	this->_gallows[5] = "  |    / \\";
+	this->_gallows[5] = "  |    / \\   ";
 
 	//the body is complete when the right leg is created
 	this->_body_complete = true;
